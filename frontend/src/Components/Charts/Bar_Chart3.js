@@ -58,7 +58,7 @@ const data = [
 function Bar_Chart3() {
   return (
     <BarChart
-      width={700}
+      width={500}
       height={300}
       data={data}
       layout = "vertical"

@@ -25,6 +25,7 @@ function Chart_Pie2() {
         label
       />
       <Tooltip />
+      <Legend />
     </PieChart>
   )
 }

@@ -10,6 +10,12 @@ import axios from 'axios'
 import Dropdown from '../../Components/Dropdown/Dropdown'
 import Temp from '../../Components/Temp/Temp'
 import MultiSelectDropdown from '../../Components/MutliSelectDropdown/MultiSelectDropdown'
+import IssueStatus from '../../Components/IssueStatus/IssueStatus'
+import CompareTaskGraph from '../../Components/CompareTaskGraph/CompareTaskGraph'
+import Bar_Chart5 from '../../Components/Charts/Bar_Chart5'
+import IncompleteIssuesStacked from '../../Components/IncompletedIssuesStacked/IncompleteIssuesStacked'
+import Pie_Needle from '../../Components/Charts/Pie_Needle'
+import TaskCompletionRate from '../../Components/TaskCompletionRate/TaskCompletionRate'
 
 function Homepage() {
 

@@ -1,12 +1,6 @@
 import React, { useState } from 'react'
-import { PieChart, Pie, Sector, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie,Cell, Sector, ResponsiveContainer, Legend } from 'recharts';
 
-const data = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-];
 
 const renderActiveShape = (props) => {
     const RADIAN = Math.PI / 180;
@@ -55,13 +49,13 @@ const renderActiveShape = (props) => {
   };
 
 
-function Chart_Donut1() {
+function Chart_Donut1({width=500,height=400,data,COLORS}) {
     const [activeIndex, setActiveIndex] = useState(0)
     const onPieEnter = (_, index) => {
        setActiveIndex(index);
       };
   return (
-    <PieChart width={400} height={400}>
+    <PieChart width={width} height={height}>
           <Pie
             activeIndex={activeIndex}
             activeShape={renderActiveShape}
@@ -73,7 +67,12 @@ function Chart_Donut1() {
             fill="#8884d8"
             dataKey="value"
             onMouseEnter={onPieEnter}
-          />
+          >
+             {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            ))}
+          </Pie>
+          <Legend />
         </PieChart>
   )
 }
