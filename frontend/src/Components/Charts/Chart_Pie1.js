@@ -11,6 +11,7 @@ const data = [
 ];
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042','#00C49F','#FFBB28'];
 
+
 function Chart_Pie1() {
   return (
     <PieChart width={400} height={400}>

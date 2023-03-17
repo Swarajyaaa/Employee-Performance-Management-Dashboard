@@ -1,7 +1,10 @@
-import React from 'react'
+import React, {useEffect,useState} from 'react'
 import { PieChart, Pie, Cell,Legend, Tooltip } from "recharts";
 
-const data = [
+
+
+function Chart_Pie2() {
+  const data = [
     { name: "Group A", value: 2400 },
     { name: "Group B", value: 4567 },
     { name: "Group C", value: 1398 },
@@ -9,8 +12,6 @@ const data = [
     { name: "Group E", value: 3908 },
     { name: "Group F", value: 4800 }
 ];
-
-function Chart_Pie2() {
   return (
     <PieChart width={400} height={400}>
       <Pie
