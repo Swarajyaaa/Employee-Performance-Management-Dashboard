@@ -1,27 +1,46 @@
 import React,{useEffect,useState} from 'react'
-import Bar_Chart1 from '../../Components/Charts/Bar_Chart1'
-import Bar_Chart2 from '../../Components/Charts/Bar_Chart2'
-import Bar_Chart3 from '../../Components/Charts/Bar_Chart3'
-import Chart_Donut1 from '../../Components/Charts/Chart_Donut1'
-import Chart_Pie from '../../Components/Charts/Chart_Pie'
-import Chart_Pie1 from '../../Components/Charts/Chart_Pie1'
-import Chart_Pie2 from '../../Components/Charts/Chart_Pie2'
 import axios from 'axios'
-import Dropdown from '../../Components/Dropdown/Dropdown'
-import Temp from '../../Components/Temp/Temp'
-import MultiSelectDropdown from '../../Components/MutliSelectDropdown/MultiSelectDropdown'
+import CompareTaskGraph from '../../Components/CompareTaskGraph/CompareTaskGraph';
 import IssueStatus from '../../Components/IssueStatus/IssueStatus'
-import CompareTaskGraph from '../../Components/CompareTaskGraph/CompareTaskGraph'
-import Bar_Chart5 from '../../Components/Charts/Bar_Chart5'
 import IncompleteIssuesStacked from '../../Components/IncompletedIssuesStacked/IncompleteIssuesStacked'
-import Pie_Needle from '../../Components/Charts/Pie_Needle'
 import TaskCompletionRate from '../../Components/TaskCompletionRate/TaskCompletionRate'
+const BASE_URL = 'http://localhost:5000/api'
+
 
 function Homepage() {
-
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await axios.get(BASE_URL + '/pvct');
+      console.log(data);
+    }
+    fetchData();
+  
+    return () => {
+      
+    }
+  }, [])
+  
   return (
-    <>
-    
+    <>    
+      
+      <div className='flex items-end space-x-2'>
+        <div className='space-y-2'>
+          <CompareTaskGraph />
+          <IncompleteIssuesStacked />
+        </div>
+        <div className='space-y-2'>
+          <div className='flex space-x-2' >
+          <TaskCompletionRate />
+          <TaskCompletionRate />
+          </div>
+        
+        <IssueStatus />
+        </div>
+        
+      </div>
+     
+      
+        
     </>
   );
 }
