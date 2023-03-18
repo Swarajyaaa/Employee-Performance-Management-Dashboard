@@ -41,16 +41,23 @@ function SingleProjectPage({data}) {
   return (
     <div className='flex items-start justify-between'>
       <div className='space-y-4'>
-        <ProjectDetailBox project = {project} />  
-        <div className='flex space-x-4 '>
-          <div className='bg-white shadow-md rounded-md  flex-1'>
-            <h6 className='font-semibold pt-2 pl-4 text-base'>Total Issues</h6>
-            <h1 className='text-[70px] text-center mt-[-10px] text-[#2ECC71]'>{noOfIssues}</h1>
-          </div>
+  
+            <ProjectDetailBox project = {project} />
+  
+          <div className='flex space-x-4 '>
           <div className='bg-white shadow-md rounded-md  flex-1'>
             <h6 className='font-semibold pt-2 pl-4 text-base'>Time Elapsed</h6>
-            <h1 className='text-[70px] text-center mt-[-10px] text-[#FFC300]'>{noOfHoursElapsed}<span className='text-base'> Hrs.</span></h1>
+            <h1 className='text-[55px] text-center mt-[-10px] text-[#FFC300]'>{noOfHoursElapsed}<span className='text-base'> Hrs.</span></h1>
           </div>
+          <div className='bg-white shadow-md rounded-md  flex-1'>
+            <h6 className='font-semibold pt-2 pl-4 text-base'>Total Issues</h6>
+            <h1 className='text-[55px] text-center mt-[-10px] text-[#2ECC71]'>{noOfIssues}</h1>
+          </div>
+          <div className='bg-white shadow-md rounded-md  flex-1'>
+            <h6 className='font-semibold pt-2 pl-4 text-base'>Total Blockers</h6>
+            <h1 className='text-[55px] text-center mt-[-10px] text-[#E74C3C]'>{noOfIssues}</h1>
+          </div>
+          
         </div>
         <WorkHourByResources />
       </div>

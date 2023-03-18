@@ -1,5 +1,5 @@
 import React from 'react'
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 
 const data = [
   { name: 'Group A', value: 400 },
@@ -29,8 +29,8 @@ function Chart_Pie() {
         <PieChart width={200} height={200}>
           <Pie
             data={data}
-            cx="50%"
-            cy="50%"
+            cx="60%"
+            cy="40%"
             labelLine={false}
             label={renderCustomizedLabel}
             outerRadius={80}
@@ -41,6 +41,8 @@ function Chart_Pie() {
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>
+          {/* <Legend /> */}
+          <Tooltip />
         </PieChart>
   )
 }

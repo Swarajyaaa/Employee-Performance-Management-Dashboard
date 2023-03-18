@@ -61,7 +61,7 @@ function Bar_Chart3({width,height}) {
       width={width}
       height={height}
       data={data}
-      barSize= {30}
+      barSize= {20}
       layout = "vertical"
       margin={{
         top: 5,
