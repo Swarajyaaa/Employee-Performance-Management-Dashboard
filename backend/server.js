@@ -9,6 +9,8 @@ app.use(cors());
 
 app.use("/api/", routesFile);
 
+
+
 app.listen(PORT,() => {
     console.log("Connected to db and server is listening on port " + PORT)
 })

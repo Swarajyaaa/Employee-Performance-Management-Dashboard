@@ -76,6 +76,23 @@ const totalHoursByProject = async (req,res) => {
     }
 }
 
+const test = async (req,res) =>{
+
+const apiUrl = '';
+const bearerToken = 'YOUR_BEARER_TOKEN_HERE';
+
+const config = {
+  headers: { Authorization: `Bearer ${bearerToken}` },
+};
+
+axios.get(apiUrl, config)
+  .then(response => {
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
 
 module.exports = {
     plannedVsCompleteTask,
@@ -83,7 +100,8 @@ module.exports = {
     allMembers,
     allIssuesOfProject,
     singleProject,
-    totalHoursByProject
+    totalHoursByProject,
+    test
 }
 
 /*

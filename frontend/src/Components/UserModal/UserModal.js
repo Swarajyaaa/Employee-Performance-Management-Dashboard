@@ -1,15 +1,16 @@
 import React from 'react'
+import UserPage from '../UserPage/UserPage'
 
-function UserModal({toggleModal,setIsOpen}) {
+function UserModal({toggleModal,setIsOpen,clickedUserObject,projectDate}) {
   return (
     <div className="fixed z-30 inset-y-0  inset-x-0 top-0 left-0 flex justify-center items-center bg-gray-700 bg-opacity-50">
-      <div className="z-30 top-30 relative bg-white w-5/6 h-5/6 p-6 overflow-y-auto rounded shadow-lg ">
+      <div className="z-30 top-30 relative bg-white w-5/6  p-4 overflow-y-auto rounded shadow-lg ">
         <button
           className="absolute top-0 right-0 text-gray-600 hover:text-gray-800 "
           onClick={() => setIsOpen(false)}
         >
           <svg
-            className="w-10 h-10 mr-2 mt-2 fill-current"
+            className="w-6 h-6 mr-2 mt-2 fill-current"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -17,10 +18,10 @@ function UserModal({toggleModal,setIsOpen}) {
           </svg>
         </button>
         <div className="">
-          {/* <UserPage id={} /> */}
+          <UserPage projectDate = {projectDate} user = {clickedUserObject} />
         </div>
       </div>
-    </div>
+    </div>
   )
 }
 

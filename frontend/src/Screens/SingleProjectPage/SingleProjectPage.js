@@ -17,12 +17,11 @@ function SingleProjectPage({ data }) {
   const [noOfHoursElapsed, setNoOfHoursElapsed] = useState(0);
   const { id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
+  const [clickedUserObject, setClickedUserObject] = useState({});
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
-
-
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -95,9 +94,9 @@ function SingleProjectPage({ data }) {
         <IssueStatus id={id} setNoOfIssues={setNoOfIssues} />
       </div>
       <div className="w-[20vw]">
-        <ProjectTeam id={id} setIsOpen = {setIsOpen} />
+        <ProjectTeam setClickedUserObject = {setClickedUserObject} id={id} setIsOpen = {setIsOpen} />
       </div>
-      {isOpen && (<UserModal toggleModal = {toggleModal} setIsOpen = {setIsOpen} />) }
+      {isOpen && (<UserModal projectDate = {project.created_on} clickedUserObject = {clickedUserObject} toggleModal = {toggleModal} setIsOpen = {setIsOpen} />) }
     </div>
   );
 }

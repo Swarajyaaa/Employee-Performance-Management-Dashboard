@@ -1,8 +1,11 @@
 import React from 'react'
 
-function ProjectMember({member,setIsOpen}) {
+function ProjectMember({member,setIsOpen,setClickedUserObject}) {
   return (
-    <div onClick = {() => setIsOpen(true)} className="projectMember cursor-pointer rounded-md p-2 flex items-center bg-gray-50">
+    <div onClick = {() => {
+      setIsOpen(true)
+      setClickedUserObject(member);
+    }} className="projectMember cursor-pointer rounded-md p-2 flex items-center bg-gray-50">
           <img
             className="h-10 w-10 mr-4 rounded-full object-cover"
             src="https://via.placeholder.com/150"

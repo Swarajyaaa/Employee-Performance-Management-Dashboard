@@ -1,12 +1,6 @@
 import React from 'react'
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 
-const data = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-];
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -24,13 +18,13 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 };
 
 
-function Chart_Pie() {
+function Chart_Pie({width = 200 , height = 200 , data = []}) {
   return (
-        <PieChart width={200} height={200}>
+        <PieChart width={width} height={height}>
           <Pie
             data={data}
-            cx="60%"
-            cy="40%"
+            cx="50%"
+            cy="50%"
             labelLine={false}
             label={renderCustomizedLabel}
             outerRadius={80}
@@ -40,11 +34,13 @@ function Chart_Pie() {
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
+           
           </Pie>
-          {/* <Legend /> */}
+          <Legend />
           <Tooltip />
+          
         </PieChart>
   )
 }
 
-export default Chart_Pie
+export default Chart_Pie;
