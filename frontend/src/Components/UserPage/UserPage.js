@@ -5,10 +5,10 @@ import ReactTooltip from "react-tooltip";
 import Chart_Pie from "../Charts/Chart_Pie";
 import MeetingCard from "../MeetingCard/MeetingCard";
 import axios from 'axios'
+const BASE_URL = 'http://localhost:5000/api'
 
 function UserPage({ user, projectDate }) {
   const [allMeetingByPerson, setAllMeetingByPerson] = useState([]);
-  console.log(user);
   const data = [
     { name: "Group A", value: 400 },
     { name: "Group B", value: 300 },
@@ -37,17 +37,18 @@ function UserPage({ user, projectDate }) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-//   useEffect(() => {
-//     const fetchAllMeetings = async () => {
-//         const responseData = await axios.get(BASE_URL + '/projects/' + id +  '/membership');
-//         let allMeeting = responseData.data;
-//        console.log(allMeeting);
-//     }
-//     fetchAllMeetings();
-//     return () => {
+  useEffect(() => {
+    const fetchAllMeetings = async () => {
+        console.log('sshs')
+        const responseData = await axios.get(BASE_URL + '/meetings');
+        let allMeeting = responseData.data.value;
+        setAllMeetingByPerson(allMeeting)
+    }
+    fetchAllMeetings();
+    return () => {
       
-//     }
-//   }, [])
+    }
+  }, [])
   
 
   return (
@@ -142,10 +143,8 @@ function UserPage({ user, projectDate }) {
       <div className="w-[400px] rounded-md bg-gray-50 p-4 ">
       <h6 className='font-semibold mb-4 text-base'>{user.user.name.split(' ')[0] + `'s Upcoming Meetings` }</h6>
         <div className="meetingContainer space-y-4 h-[82vh] py-2 overflow-y-auto">
-            <MeetingCard />
-            <MeetingCard />
-            <MeetingCard />
-            <MeetingCard />
+            {allMeetingByPerson.map(meeting => <MeetingCard meeting = {meeting} key={meeting.id} />)}
+
       
         </div>
       </div>
