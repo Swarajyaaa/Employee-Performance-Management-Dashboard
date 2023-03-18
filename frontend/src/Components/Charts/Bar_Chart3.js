@@ -55,12 +55,13 @@ const data = [
   },
 ];
 
-function Bar_Chart3() {
+function Bar_Chart3({width,height}) {
   return (
     <BarChart
-      width={500}
-      height={300}
+      width={width}
+      height={height}
       data={data}
+      barSize= {30}
       layout = "vertical"
       margin={{
         top: 5,
@@ -69,7 +70,6 @@ function Bar_Chart3() {
         bottom: 5,
       }}
     >
-      <CartesianGrid strokeDasharray="3 3" />
       <XAxis type="number" />
       <YAxis dataKey="name" type="category" />
       <Tooltip />

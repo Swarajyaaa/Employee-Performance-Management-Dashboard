@@ -65,12 +65,25 @@ const singleProject = async (req,res) => {
     }
 }
 
+const totalHoursByProject = async (req,res) => {
+    const { project_id } = req.params;
+    try {
+        const timeEntriesResponse = await axios.get(BASE_URL + 'time_entries.json?project_id=' + project_id +'&key=' + API_KEY);
+        const timeEntries = timeEntriesResponse.data;
+        res.send(timeEntries);
+    }catch(e){
+        res.status(STATUS_BAD_REQUEST).json(e.message);
+    }
+}
+
+
 module.exports = {
     plannedVsCompleteTask,
     allProjects,
     allMembers,
     allIssuesOfProject,
-    singleProject
+    singleProject,
+    totalHoursByProject
 }
 
 /*

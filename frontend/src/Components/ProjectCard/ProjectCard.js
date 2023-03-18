@@ -10,7 +10,6 @@ function ProjectCard({project}) {
          <p class="text-gray-600 mb-2">Identifier : {project.identifier}</p>
          <p class="text-gray-600">Started on {new Date(project.created_on).toLocaleDateString()}</p>
          <p class="text-gray-600 mb-2">Identifier : {project.identifier}</p>
-         
     </div>
     </Link>
   )
