@@ -7,7 +7,7 @@ function Layout({children}) {
     <React.Fragment>
       <Sidebar/>
       <Topbar/>
-      <div className='p-4 md:ml-[270px] relative'>
+      <div className='p-[1vw] md:ml-[16.87vw] relative'>
         {children}
       </div>
     </React.Fragment>
