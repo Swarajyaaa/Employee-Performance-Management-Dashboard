@@ -43,11 +43,34 @@ const allMembers = async (req,res) => {
     }
 }
 
+const allIssuesOfProject = async (req,res) =>{
+    const { project_id } = req.params;
+    try {
+        const allIssuesResponse = await axios.get(BASE_URL + 'issues.json?project_id=' + project_id + '&key=' + API_KEY);
+        const allIssues = allIssuesResponse.data;
+        res.send(allIssues);
+    }catch(e){
+        res.status(STATUS_BAD_REQUEST).json(e.message);
+    }
+}
+
+const singleProject = async (req,res) => {
+    const {id} = req.params;
+    try {
+        const singleProjectResponse = await axios.get(BASE_URL + 'projects/' + id + '.json?' +'key=' + API_KEY);
+        const project = singleProjectResponse.data;
+        res.send(project);
+    }catch(e){
+        res.status(STATUS_BAD_REQUEST).json(e.message);
+    }
+}
 
 module.exports = {
     plannedVsCompleteTask,
     allProjects,
-    allMembers
+    allMembers,
+    allIssuesOfProject,
+    singleProject
 }
 
 /*

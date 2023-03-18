@@ -65,7 +65,7 @@ function Chart_Donut1({width=500,height=400,data,COLORS}) {
             innerRadius={60}
             outerRadius={80}
             fill="#8884d8"
-            dataKey="value"
+            dataKey="count"
             onMouseEnter={onPieEnter}
           >
              {data.map((entry, index) => (

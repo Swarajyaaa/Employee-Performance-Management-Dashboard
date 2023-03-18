@@ -11,7 +11,6 @@ function ProjectTeam({id}) {
           const responseData = await axios.get(BASE_URL + '/projects/' + id +  '/membership');
           let allMembersData = responseData.data.memberships;
           allMembersData = allMembersData.filter(member => member.roles[0].id !== 8 && member.roles[0].id !== 9 )
-          console.log(allMembersData);
           setAllMembers(allMembersData);
       }
       fetchAllMembers();
