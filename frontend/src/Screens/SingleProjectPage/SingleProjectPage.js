@@ -6,6 +6,7 @@ import ProjectCard from "../../Components/ProjectCard/ProjectCard";
 import ProjectDetailBox from "../../Components/ProjectDetailBox/ProjectDetailBox";
 import ProjectTeam from "../../Components/ProjectTeam/ProjectTeam";
 import WorkHourByResources from "../../Components/WorkHourByResources/WorkHourByResources";
+import UserModal from "../../Components/UserModal/UserModal";
 
 const BASE_URL = "http://localhost:5000/api";
 
@@ -15,6 +16,14 @@ function SingleProjectPage({ data }) {
   const [noOfIssues, setNoOfIssues] = useState(0);
   const [noOfHoursElapsed, setNoOfHoursElapsed] = useState(0);
   const { id } = useParams();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
+
+
+
   useEffect(() => {
     const fetchProject = async () => {
       const responseData = await axios.get(BASE_URL + "/projects/" + id);
@@ -86,8 +95,9 @@ function SingleProjectPage({ data }) {
         <IssueStatus id={id} setNoOfIssues={setNoOfIssues} />
       </div>
       <div className="w-[20vw]">
-        <ProjectTeam id={id} />
+        <ProjectTeam id={id} setIsOpen = {setIsOpen} />
       </div>
+      {isOpen && (<UserModal toggleModal = {toggleModal} setIsOpen = {setIsOpen} />) }
     </div>
   );
 }
