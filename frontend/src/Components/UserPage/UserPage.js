@@ -9,6 +9,7 @@ const BASE_URL = 'http://localhost:5000/api'
 
 function UserPage({ user, projectDate }) {
   const [allMeetingByPerson, setAllMeetingByPerson] = useState([]);
+  const [noOfHoursByActivity, setNoOfHoursByActivity] = useState([])
   const data = [
     { name: "Group A", value: 400 },
     { name: "Group B", value: 300 },
@@ -39,17 +40,38 @@ function UserPage({ user, projectDate }) {
 
   useEffect(() => {
     const fetchAllMeetings = async () => {
-        console.log('sshs')
         const responseData = await axios.get(BASE_URL + '/meetings');
+        console.log(responseData)
         let allMeeting = responseData.data.value;
         setAllMeetingByPerson(allMeeting)
     }
     fetchAllMeetings();
+
+    const fetchTimeEntries = async () => {
+        const id = user.user.id;
+        const responseData = await axios.get(BASE_URL + "/timeEntries/" + id);
+        const res_data = responseData.data.time_entries;
+        let timeEntriesData = res_data;
+        let hoursByActivity = {};
+        timeEntriesData.forEach(time_entry => {  
+          if (!hoursByActivity[time_entry.activity.id]) {
+            hoursByActivity[time_entry.activity.id] = { name: time_entry.activity.name, value: 0 };
+          }
+          hoursByActivity[time_entry.activity.id].value += time_entry.hours;
+        })
+        const tempData = [];
+        for (let key in hoursByActivity){
+          tempData.push(hoursByActivity[key]);
+        }
+        console.log(tempData)
+        setNoOfHoursByActivity(tempData);
+      };
+      fetchTimeEntries();
+
     return () => {
       
     }
   }, [])
-  
 
   return (
     <div className="flex space-x-4">
@@ -106,9 +128,9 @@ function UserPage({ user, projectDate }) {
           </div>
           <div>
             <h6 className="font-semibold  text-base text-center">
-              Time Allocation Graph
+              Time Allocation Graph (in Hrs.)
             </h6>
-            <Chart_Pie data={data} height={220} width={360} />
+            <Chart_Pie data={noOfHoursByActivity} height={220} width={360} />
           </div>
         </div>
         <div className="heatMap w-[100%] mt-4">
@@ -144,8 +166,6 @@ function UserPage({ user, projectDate }) {
       <h6 className='font-semibold mb-4 text-base'>{user.user.name.split(' ')[0] + `'s Upcoming Meetings` }</h6>
         <div className="meetingContainer space-y-4 h-[82vh] py-2 overflow-y-auto">
             {allMeetingByPerson.map(meeting => <MeetingCard meeting = {meeting} key={meeting.id} />)}
-
-      
         </div>
       </div>
     </div>

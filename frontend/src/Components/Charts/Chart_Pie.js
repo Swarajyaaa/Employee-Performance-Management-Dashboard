@@ -17,6 +17,17 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
   );
 };
 
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload) {
+    return (
+      <div className='bg-white shadow-md  rounded-md w-[200px] p-4 border'>
+          <p className='text-black'>{payload[0].name + " : " + payload[0].value + ' Hrs'}</p>
+      </div>
+    );
+  }
+
+  return null;
+};
 
 function Chart_Pie({width = 200 , height = 200 , data = []}) {
   return (
@@ -33,11 +44,10 @@ function Chart_Pie({width = 200 , height = 200 , data = []}) {
           >
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-            ))}
-           
+            ))}      
           </Pie>
           <Legend />
-          <Tooltip />
+          <Tooltip content={<CustomTooltip />} />
           
         </PieChart>
   )

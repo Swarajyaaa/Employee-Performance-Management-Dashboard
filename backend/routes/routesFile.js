@@ -1,5 +1,5 @@
 const express = require("express");
-const {  plannedVsCompleteTask, allProjects,getMeetings, allMembers, test,allIssuesOfProject,singleProject,totalHoursByProject,timeEntryByUserID} = require("../controllers/controllers");
+const {  plannedVsCompleteTask, allProjects,getMeetings, allMembers, test,timeEntryByUserID,allIssuesOfProject,singleProject,totalHoursByProject} = require("../controllers/controllers");
 const router = express.Router();
 
 router.get('/pvct', plannedVsCompleteTask)
