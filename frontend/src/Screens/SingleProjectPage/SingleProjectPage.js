@@ -32,10 +32,12 @@ function SingleProjectPage({ data }) {
     fetchProject();
 
     const fetchTotalHours = async () => {
+      // id = project id here
       const responseData = await axios.get(
         BASE_URL + "/totalHoursByProject/" + id
       );
-      const timeEntriesData = responseData.data.time_entries;
+      console.log(responseData)
+      const timeEntriesData = responseData.data;
       let hours = 0;
       let hoursByPerson = {};
       timeEntriesData.forEach(time_entry => {

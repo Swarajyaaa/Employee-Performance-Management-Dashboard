@@ -65,12 +65,33 @@ const singleProject = async (req,res) => {
     }
 }
 
+const retrieveItemsTimeEntries = async (apiUrl,limit,offset) => {
+    let allData = [];
+    try {
+        while (true) {
+          const response = await axios.get(apiUrl+'&limit=' + limit +'&offset=' + offset);
+            const time_entries = response.data.time_entries;
+            allData.push(time_entries);
+            if (time_entries.length === 0) {
+              break; 
+            } else {
+              offset += limit;
+            }
+        }
+        allData = allData.flat();
+        console.log('allData : ',allData);
+      } catch (error) {
+        console.error(`Error: ${error.message}`);
+      }
+      return allData;
+}
+
 const totalHoursByProject = async (req,res) => {
     const { project_id } = req.params;
     try {
-        const timeEntriesResponse = await axios.get(BASE_URL + 'time_entries.json?project_id=' + project_id + '&key=' + API_KEY);
-        const timeEntries = timeEntriesResponse.data;
-        res.send(timeEntries);
+        const apiUrl = BASE_URL + 'time_entries.json?project_id=' + project_id + '&key=' + API_KEY;
+        const allTimeEntriesOfProject = await retrieveItemsTimeEntries(apiUrl,25,0)
+        res.send(allTimeEntriesOfProject);
     }catch(e){
         res.status(STATUS_BAD_REQUEST).json(e.message);
     }
