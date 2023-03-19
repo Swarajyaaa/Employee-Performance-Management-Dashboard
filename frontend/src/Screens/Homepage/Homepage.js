@@ -31,10 +31,15 @@ function Homepage() {
         <div className='space-y-2'>
           <div className='flex space-x-2' >
           <TaskCompletionRate />
-          <TaskCompletionRate />
+          {/* <TaskCompletionRate /> */}
           </div>
         
-        <IssueStatus />
+        <IssueStatus chartData={[
+  { name: 'Group A', value: 400 },
+  { name: 'Group B', value: 300 },
+  { name: 'Group C', value: 300 },
+  { name: 'Group D', value: 200 },
+]} />
         </div>
         
       </div>
