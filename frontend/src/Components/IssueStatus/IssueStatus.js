@@ -4,12 +4,13 @@ import axios from 'axios'
 const BASE_URL = 'http://localhost:5000/api'
 
 function IssueStatus({id,setNoOfIssues}) {
-   const [chartData, setChartData] = useState([]);
-    const COLORS = ['#FFC300', '#0099CC', '#2ECC71', '#FF7f50','7f8c8d', '#E74C3C', '#FF5733',];
-    const renderChartData = [];
+  const [chartData, setChartData] = useState([]);
+  const COLORS = ['#FFC300', '#0099CC', '#2ECC71', '#FF7f50','7f8c8d', '#E74C3C', '#FF5733',];
+  const renderChartData = [];
   const [allIssues  , setAllIssues] = useState([]);
   useEffect(() => {
       const fetchAllIssues = async () => {
+         // here id is project id
           const responseData = await axios.get(BASE_URL + '/issues/' + id);
           const total_count = responseData.data.total_count;
           setNoOfIssues(total_count)

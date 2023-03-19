@@ -43,12 +43,38 @@ const allMembers = async (req,res) => {
     }
 }
 
+const retrieveItemsIssues = async (apiUrl,limit,offset) => {
+    let allData = [];
+    try {
+        while (true) {
+          const response = await axios.get(apiUrl+'&limit=' + limit +'&offset=' + offset);
+          console.log(response.data)
+            const issues = response.data.issues;
+            allData.push(issues);
+            if (issues.length === 0) {
+              break; 
+            } else {
+              offset += limit;
+            }
+        }
+        allData = allData.flat();
+      } catch (error) {
+        console.error(`Error: ${error.message}`);
+      }
+      return allData;
+}
+
+
 const allIssuesOfProject = async (req,res) =>{
     const { project_id } = req.params;
     try {
-        const allIssuesResponse = await axios.get(BASE_URL + 'issues.json?project_id=' + project_id + '&key=' + API_KEY);
-        const allIssues = allIssuesResponse.data;
-        res.send(allIssues);
+        const apiUrl = BASE_URL + 'issues.json?project_id=' + project_id + '&key=' + API_KEY;
+        const allIssues = await retrieveItemsIssues(apiUrl,25,0);
+        const data = {
+            issues : allIssues,
+            total_count : allIssues.length
+        }
+        res.send(data);
     }catch(e){
         res.status(STATUS_BAD_REQUEST).json(e.message);
     }
@@ -79,7 +105,6 @@ const retrieveItemsTimeEntries = async (apiUrl,limit,offset) => {
             }
         }
         allData = allData.flat();
-        console.log('allData : ',allData);
       } catch (error) {
         console.error(`Error: ${error.message}`);
       }
