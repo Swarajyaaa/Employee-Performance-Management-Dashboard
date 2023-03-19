@@ -9,7 +9,7 @@ function AllProjectsPage() {
     const fetchAllProjects = async () => {
         const responseData = await axios.get(BASE_URL + '/projects');
         const allProjectsData = responseData.data.projects;
-        setAllProjects(allProjectsData.slice(0,9));
+        setAllProjects(allProjectsData.slice(0,12));
       }
     fetchAllProjects();
     
@@ -29,6 +29,9 @@ function AllProjectsPage() {
         </div>
         <div className="row flex space-x-4 ">
         {allProjects.slice(6,9).map(project => <ProjectCard project={project} key={project.id} />)}
+        </div>
+        <div className="row flex space-x-4 ">
+        {allProjects.slice(9,12).map(project => <ProjectCard project={project} key={project.id} />)}
         </div>
     </div>
   )
